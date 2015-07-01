@@ -7,6 +7,9 @@ def Struct(*names):
         if len(args) == len(names):
             for (name, value) in zip(names, args):
                 self.__dict__[name] = value
+        else:
+            for name in names:
+                self.__dict__[name] = kwargs.get(name, None)
 
     methods_dict = {'__init__': __init__,}
 

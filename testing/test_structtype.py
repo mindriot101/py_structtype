@@ -30,3 +30,13 @@ def test_constructor_args(struct):
     s = SubClass(15, 25)
 
     assert s.a == 15 and s.b == 25
+
+
+def test_constructor_kwargs(struct):
+
+    class SubClass(struct):
+        pass
+
+    s = SubClass(a=10, b=20)
+
+    assert s.a == 10 and s.b == 20
