@@ -1,0 +1,1 @@
+from structtype import Struct
