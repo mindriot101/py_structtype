@@ -1,2 +1,2 @@
-class Struct(object):
-    pass
+def Struct(*names):
+    return type('Struct', (object, ), {})
