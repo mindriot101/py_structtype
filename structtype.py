@@ -3,5 +3,12 @@ def Struct(*names):
     for name in names:
         variables_dict[name] = None
 
-    full_dict = variables_dict
-    return type('Struct', (object, ), full_dict)
+    def __init__(self, *args, **kwargs):
+        if len(args) == len(names):
+            for (name, value) in zip(names, args):
+                self.__dict__[name] = value
+
+    methods_dict = {'__init__': __init__,}
+
+    full_dict = dict(variables_dict, **methods_dict)
+    return type('Struct', (object,), full_dict)

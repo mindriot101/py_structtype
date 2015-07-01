@@ -20,3 +20,13 @@ def test_instance_values_initialised_to_None(struct):
     s = SubClass()
 
     assert s.a is None and s.b is None
+
+
+def test_constructor_args(struct):
+
+    class SubClass(struct):
+        pass
+
+    s = SubClass(15, 25)
+
+    assert s.a == 15 and s.b == 25
