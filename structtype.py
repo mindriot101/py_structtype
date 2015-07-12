@@ -2,14 +2,14 @@ __all__ = ['Struct']
 
 
 def __eq__(self, other):
-    for name in self.__terms:
+    for name in self.members:
         if getattr(self, name) != getattr(other, name):
             return False
     return True
 
 
 def __len__(self):
-    return len(self.__terms)
+    return len(self.members)
 
 
 def Struct(*names):
@@ -25,7 +25,7 @@ def Struct(*names):
             for name in names:
                 self.__dict__[name] = kwargs.get(name, None)
 
-        self.__terms = names
+        self.members = names
 
     methods_dict = {'__init__': __init__, '__eq__': __eq__, '__len__': __len__}
 
