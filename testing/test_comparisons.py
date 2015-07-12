@@ -10,8 +10,17 @@ def test_equality_operator(DefaultSubclass):
     assert a == b
 
 
-def test_less_than_operator(DefaultSubclass):
+class SubClass(Struct('a', 'b')):
+    pass
 
-    a = DefaultSubclass(a=9, b=15)
-    b = DefaultSubclass(a=10, b=20)
-    assert a < b
+
+@pytest.mark.parametrize('a,b,expected', [
+    (SubClass(a=9,
+              b=15), SubClass(a=10,
+                              b=20), True),
+    (SubClass(a=100,
+              b=200), SubClass(a=10,
+                               b=20), False),
+])
+def test_less_than_operator(a, b, expected):
+    assert (a < b) == expected
