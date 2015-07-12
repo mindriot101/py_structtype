@@ -27,6 +27,10 @@ def __lt__(self, other):
     return True
 
 
+def __getitem__(self, name):
+    return self.__dict__[name]
+
+
 def Struct(*names):
     variables_dict = {}
     for name in names:
@@ -48,6 +52,7 @@ def Struct(*names):
         '__len__': __len__,
         '__iter__': __iter__,
         '__lt__': __lt__,
+        '__getitem__': __getitem__,
     }
 
     full_dict = dict(variables_dict, **methods_dict)

@@ -36,3 +36,8 @@ def test_to_list(instance):
 def test_to_list_ordering(instance):
 
     assert list(instance) == [10, 20]
+
+
+def test_dictionary_access(instance):
+
+    assert (instance['a'] == 10) & (instance['b'] == 20)
