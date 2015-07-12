@@ -1,3 +1,5 @@
+__all__ = ['Struct']
+
 def Struct(*names):
     variables_dict = {}
     for name in names:
