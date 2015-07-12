@@ -54,3 +54,10 @@ def test_to_list(default_subclass):
     s = default_subclass(a=10, b=20)
 
     assert list(s) == [10, 20]
+
+
+def test_to_list_ordering(default_subclass):
+
+    s = default_subclass(b=20, a=10)
+
+    assert list(s) == [10, 20]
