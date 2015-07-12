@@ -2,6 +2,9 @@ __all__ = ['Struct']
 
 
 def __eq__(self, other):
+    if sorted(self.members) != sorted(other.members):
+        return False
+
     for name in self.members:
         if getattr(self, name) != getattr(other, name):
             return False
@@ -15,6 +18,13 @@ def __len__(self):
 def __iter__(self):
     for name in self.members:
         yield self.__dict__[name]
+
+
+def __lt__(self, other):
+    for name in self.members:
+        if getattr(self, name) >= getattr(other, name):
+            return False
+    return True
 
 
 def Struct(*names):
@@ -36,7 +46,8 @@ def Struct(*names):
         '__init__': __init__,
         '__eq__': __eq__,
         '__len__': __len__,
-        '__iter__': __iter__
+        '__iter__': __iter__,
+        '__lt__': __lt__,
     }
 
     full_dict = dict(variables_dict, **methods_dict)
