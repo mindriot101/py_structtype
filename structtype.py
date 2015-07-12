@@ -12,6 +12,11 @@ def __len__(self):
     return len(self.members)
 
 
+def __iter__(self):
+    for name in self.members:
+        yield self.__dict__[name]
+
+
 def Struct(*names):
     variables_dict = {}
     for name in names:
@@ -27,7 +32,12 @@ def Struct(*names):
 
         self.members = names
 
-    methods_dict = {'__init__': __init__, '__eq__': __eq__, '__len__': __len__}
+    methods_dict = {
+        '__init__': __init__,
+        '__eq__': __eq__,
+        '__len__': __len__,
+        '__iter__': __iter__
+    }
 
     full_dict = dict(variables_dict, **methods_dict)
     return type('Struct', (object,), full_dict)

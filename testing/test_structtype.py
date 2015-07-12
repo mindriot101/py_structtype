@@ -47,3 +47,10 @@ def test_length(default_subclass):
     s = default_subclass(a=10, b=20)
 
     assert len(s) == 2
+
+
+def test_to_list(default_subclass):
+
+    s = default_subclass(a=10, b=20)
+
+    assert list(s) == [10, 20]
