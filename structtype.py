@@ -1,5 +1,13 @@
 __all__ = ['Struct']
 
+
+def __eq__(self, other):
+    for name in self.__terms:
+        if getattr(self, name) != getattr(other, name):
+            return False
+    return True
+
+
 def Struct(*names):
     variables_dict = {}
     for name in names:
@@ -13,7 +21,9 @@ def Struct(*names):
             for name in names:
                 self.__dict__[name] = kwargs.get(name, None)
 
-    methods_dict = {'__init__': __init__,}
+        self.__terms = names
+
+    methods_dict = {'__init__': __init__, '__eq__': __eq__,}
 
     full_dict = dict(variables_dict, **methods_dict)
     return type('Struct', (object,), full_dict)
