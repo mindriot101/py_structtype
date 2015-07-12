@@ -14,3 +14,8 @@ def DefaultSubclass(struct):
         pass
 
     return SubClass
+
+
+@pytest.fixture
+def instance(DefaultSubclass):
+    return DefaultSubclass(a=10, b=20)

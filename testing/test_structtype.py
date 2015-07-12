@@ -13,36 +13,26 @@ def test_instance_values_initialised_to_None(DefaultSubclass):
     assert s.a is None and s.b is None
 
 
-def test_constructor_args(DefaultSubclass):
+def test_constructor_args(instance):
 
-    s = DefaultSubclass(15, 25)
-
-    assert s.a == 15 and s.b == 25
+    assert instance.a == 10 and instance.b == 20
 
 
-def test_constructor_kwargs(DefaultSubclass):
+def test_constructor_kwargs(instance):
 
-    s = DefaultSubclass(a=10, b=20)
-
-    assert s.a == 10 and s.b == 20
+    assert instance.a == 10 and instance.b == 20
 
 
-def test_length(DefaultSubclass):
+def test_length(instance):
 
-    s = DefaultSubclass(a=10, b=20)
-
-    assert len(s) == 2
+    assert len(instance) == 2
 
 
-def test_to_list(DefaultSubclass):
+def test_to_list(instance):
 
-    s = DefaultSubclass(a=10, b=20)
-
-    assert list(s) == [10, 20]
+    assert list(instance) == [10, 20]
 
 
-def test_to_list_ordering(DefaultSubclass):
+def test_to_list_ordering(instance):
 
-    s = DefaultSubclass(b=20, a=10)
-
-    assert list(s) == [10, 20]
+    assert list(instance) == [10, 20]
