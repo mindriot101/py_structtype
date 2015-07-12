@@ -1,20 +1,5 @@
 import inspect
 from structtype import Struct
-import pytest
-
-
-@pytest.fixture
-def struct():
-    return Struct("a", "b")
-
-
-@pytest.fixture
-def default_subclass(struct):
-
-    class SubClass(struct):
-        pass
-
-    return SubClass
 
 
 def test_stuct_instance_is_class(struct):
