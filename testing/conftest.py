@@ -8,7 +8,7 @@ def struct():
 
 
 @pytest.fixture
-def default_subclass(struct):
+def DefaultSubclass(struct):
 
     class SubClass(struct):
         pass
