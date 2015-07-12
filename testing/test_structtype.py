@@ -8,35 +8,42 @@ def struct():
     return Struct("a", "b")
 
 
+@pytest.fixture
+def default_subclass(struct):
+
+    class SubClass(struct):
+        pass
+
+    return SubClass
+
+
 def test_stuct_instance_is_class(struct):
     assert inspect.isclass(struct)
 
 
-def test_instance_values_initialised_to_None(struct):
+def test_instance_values_initialised_to_None(default_subclass):
 
-    class SubClass(struct):
-        pass
-
-    s = SubClass()
+    s = default_subclass()
 
     assert s.a is None and s.b is None
 
 
-def test_constructor_args(struct):
+def test_constructor_args(default_subclass):
 
-    class SubClass(struct):
-        pass
-
-    s = SubClass(15, 25)
+    s = default_subclass(15, 25)
 
     assert s.a == 15 and s.b == 25
 
 
-def test_constructor_kwargs(struct):
+def test_constructor_kwargs(default_subclass):
 
-    class SubClass(struct):
-        pass
-
-    s = SubClass(a=10, b=20)
+    s = default_subclass(a=10, b=20)
 
     assert s.a == 10 and s.b == 20
+
+
+def test_length(default_subclass):
+
+    s = default_subclass(a=10, b=20)
+
+    assert len(s) == 2
