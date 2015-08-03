@@ -42,7 +42,7 @@ def Struct(*names):
                 self.__dict__[name] = value
         else:
             for name in names:
-                self.__dict__[name] = kwargs.get(name, None)
+                self.__dict__[name] = kwargs.get(name)
 
         self.members = names
 
